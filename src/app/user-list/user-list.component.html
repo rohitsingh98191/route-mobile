@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col mt-4 mb-4 d-flex justify-content-center" *ngFor="let data of getUserList?.data">
+      <div class="card" style="width: 18rem;">
+        <img [src]="data?.avatar" class="card-img-top" [alt]="data?.id">
+        <div class="card-body">
+          <h5 class="card-title">{{data?.first_name}} {{data?.last_name}}</h5>
+          <p class="card-text">{{data?.email}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <nav>
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{'disabled':getUserList?.page==1}" >
+          <a class="page-link curzor-pointer" (click)="getPreviousPageDetails()" tabindex="-1">Previous</a>
+        </li>
+        <ng-container *ngFor="let pages of getUserList?.pages;let i =index">
+          <li class="page-item " [ngClass]="{'active': getUserList?.page==i+1}" ><a class="page-link curzor-pointer" (click)="getDetailsByPage(i+1)">{{i+1}} </a></li>
+        </ng-container>
+        <li class="page-item" [ngClass]="{'disabled':getUserList?.total_pages==getUserList?.page}">
+          <a class="page-link curzor-pointer"  (click)="getNextPageDetails()">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

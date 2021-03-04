@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Login</h5>
+          <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm.value)">
+            <div class="form-label-group mb-0">
+              <input type="email" id="inputEmail" class="form-control" formControlName='email' placeholder="Email address" required autofocus>
+              <label for="inputEmail">Email address</label>
+            </div>
+            <div class="text-danger text-center" *ngIf=" loginForm.controls['email'].errors &&
+            loginForm.controls['email'].errors.pattern &&
+            loginForm.controls['email'].touched">{{'Enter a valid email'}}</div>
+            <div class="form-label-group mt-3">
+              <input type="password" id="inputPassword" class="form-control" formControlName='password' placeholder="Password" required>
+              <label for="inputPassword">Password</label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" data-toggle="modal" data-target="#myModal" [disabled]="loginForm?.invalid" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title text-capitalize text-danger" id="modal-basic-title">{{errorText}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+</ng-template>
+
